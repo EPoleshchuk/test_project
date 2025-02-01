@@ -1,0 +1,23 @@
+name: Test with Report
+
+on:
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  linter:
+    name: Ruff linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: list
+        run: ls -l -a
+      - name: Install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: sudo apt install -y ruff
+      - name: Run ruff
+        run: ruff check .
