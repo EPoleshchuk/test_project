@@ -68,10 +68,6 @@ jobs:
           path: allure-results
       - name: Generate allure report
         run: allure generate -c allure-results -o allure-report --clean
-      - name: Deploy allure report
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: allure-report
       - name: Upload allure report as artifact
         uses: actions/upload-pages-artifact@v3
         with:
