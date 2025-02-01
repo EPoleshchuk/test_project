@@ -72,3 +72,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: allure-report
+      - name: Deploy allure report
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: allure-report
