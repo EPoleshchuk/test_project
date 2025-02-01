@@ -68,13 +68,14 @@ jobs:
           path: allure-results
       - name: Generate allure report
         run: allure generate -c allure-results -o allure-report --clean
+      - name: test test
+        run: find allure-report -type l
       - name: Upload allure report as artifact
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report
       - name: Deploy allure report
-        id: deployment
         uses: actions/deploy-pages@v4
         with:
           artifact_name: allure-report
