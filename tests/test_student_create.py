@@ -8,7 +8,7 @@ from faker import Faker
 from services.university.models.student_request import StudentRequest
 from services.university.university_service import UniversityService
 
-faker = Faker()
+faker = Faker("ru_RU")
 
 
 class TestStudent:
@@ -18,12 +18,12 @@ class TestStudent:
         group = GroupRequest(name=faker.name())
         group_response = university_service.create_group(group)
 
-        Logger.info("### Steps 1. Create student")
+        Logger.info("### Steps 2. Create student")
         student = StudentRequest(first_name=faker.first_name(),
                                  last_name=faker.last_name(),
                                  email=faker.email(),
                                  degree=random.choice([option for option in DegreeEnum]),
-                                 phone="+78021553123",
+                                 phone=faker.phone_number(),
                                  group_id=group_response.id)
         student_response = university_service.create_student(student_request=student)
 
