@@ -12,7 +12,7 @@ services:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB_AUTH}" ]
       interval: 10s
       retries: 5
-      start_period: 30s
+      start_period: 10s
       timeout: 10s
 
   postgres_university:
@@ -28,7 +28,7 @@ services:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB_UNIVERSITY}" ]
       interval: 10s
       retries: 5
-      start_period: 30s
+      start_period: 10s
       timeout: 10s
 
   auth:
@@ -47,6 +47,12 @@ services:
     depends_on:
       postgres_auth:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8000/docs"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
 
   university:
     image: mekidmetal/university-service
@@ -64,3 +70,9 @@ services:
     depends_on:
       postgres_university:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8001/docs"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
