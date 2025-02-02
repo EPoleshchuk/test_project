@@ -52,8 +52,8 @@ jobs:
           echo "UNIVERSITY_SERVICE_API_URL=http://127.0.0.1:8001" >> .env
       - name: Start product
         run: docker compose up -d
-       - name: test test
-       run: curl http://127.0.0.1:8000
+      - name: test test
+        run: curl http://127.0.0.1:8000
       - name: Run tests
         run: pytest
       - name: Upload tests report
