@@ -48,7 +48,7 @@ services:
       postgres_auth:
         condition: service_healthy
     healthcheck:
-      test: curl -f http://auth:8000/docs || exit 1
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8000/docs"]
       interval: 10s
       retries: 5
       start_period: 10s
@@ -71,7 +71,7 @@ services:
       postgres_university:
         condition: service_healthy
     healthcheck:
-      test: curl -f http://university:8000/docs || exit 1
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8001/docs"]
       interval: 10s
       retries: 5
       start_period: 10s
