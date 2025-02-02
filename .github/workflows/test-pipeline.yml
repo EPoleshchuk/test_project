@@ -53,7 +53,7 @@ jobs:
       - name: Start product
         run: docker compose up -d
       - name: test test
-        run: docker ps
+        run: sleep 30
       - name: Run tests
         run: pytest
       - name: Upload tests report
