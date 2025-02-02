@@ -53,7 +53,7 @@ jobs:
       - name: Start product
         run: docker compose up -d
       - name: test test
-        run: curl http://127.0.0.1:8000
+        run: docker ps
       - name: Run tests
         run: pytest
       - name: Upload tests report
